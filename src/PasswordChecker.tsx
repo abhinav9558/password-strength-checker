@@ -15,7 +15,7 @@ const PasswordChecker: React.FC = () => {
     if (password) {
       const result = zxcvbn(password);
       setStrength(result.score);
-      setCrackTime(result.crack_times_display.offline_slow_hashing_1e4_per_second);
+      setCrackTime(result.crack_times_display.offline_slow_hashing_1e4_per_second as string);
       checkPasswordLeak(password);
     } else {
       setStrength(0);
@@ -33,9 +33,9 @@ const PasswordChecker: React.FC = () => {
 
       const response = await axios.get(`https://api.pwnedpasswords.com/range/${prefix}`);
       const leakedHashes = response.data.split('\n');
-
-      const leakedHash = leakedHashes.find(hash => hash.split(':')[0].toLowerCase() === suffix.toLowerCase());
-
+      
+      const leakedHash = leakedHashes.find((hash: string) => hash.split(':')[0].toLowerCase() === suffix.toLowerCase());
+      
       if (leakedHash) {
         setIsLeaked(true);
         setLeakCount(parseInt(leakedHash.split(':')[1], 10));
