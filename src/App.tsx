@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import zxcvbn from "zxcvbn";
-import axios from "axios";
-import { Eye, EyeOff, AlertCircle } from "lucide-react";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import zxcvbn from 'zxcvbn';
+import axios from 'axios';
+import { Eye, EyeOff, AlertCircle } from 'lucide-react';
+import './App.css';
 
 const App: React.FC = () => {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [strength, setStrength] = useState(0);
-  const [crackTime, setCrackTime] = useState("");
+  const [crackTime, setCrackTime] = useState('');
   const [isLeaked, setIsLeaked] = useState(false);
   const [leakCount, setLeakCount] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
@@ -16,13 +16,11 @@ const App: React.FC = () => {
     if (password) {
       const result = zxcvbn(password);
       setStrength(result.score);
-      setCrackTime(
-        result.crack_times_display.offline_slow_hashing_1e4_per_second,
-      );
+      setCrackTime(result.crack_times_display.offline_slow_hashing_1e4_per_second.toString());
       checkPasswordLeak(password);
     } else {
       setStrength(0);
-      setCrackTime("");
+      setCrackTime('');
       setIsLeaked(false);
       setLeakCount(0);
     }
