@@ -1,4 +1,4 @@
-<h1 align="left">Password Strength Checker</h1>
+<h1 align="left">Password Strength Checker - https://abhinav9558.github.io/password-strength-checker/</h1>
 
 ###
 
